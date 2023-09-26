@@ -22,7 +22,6 @@ public class CategoryService {
     }
 
     public Category findByName(String value) {
-        Category category = categoryRepository.findByName(value).orElseThrow(RuntimeException::new );
-        return category;
+        return categoryRepository.findByName(value).orElseThrow(RuntimeException::new );
     }
 }

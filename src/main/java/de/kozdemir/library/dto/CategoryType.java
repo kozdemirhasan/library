@@ -1,5 +1,4 @@
 package de.kozdemir.library.dto;
-
 import lombok.Getter;
 
 /**
@@ -32,3 +31,4 @@ public enum CategoryType {
         this.value = value;
     }
 }
+

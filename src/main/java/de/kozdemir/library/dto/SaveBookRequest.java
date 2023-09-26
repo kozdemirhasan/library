@@ -33,7 +33,7 @@ public final class SaveBookRequest {
     private File image;
 
     @NotNull
-    private Long categoryId;
+    private  Long categoryId;
 
     @NotNull
     private Integer totalPage;

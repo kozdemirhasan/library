@@ -49,7 +49,7 @@ public class BookListService {
     }
 
     public List<BookResponse> searchBookStatus(BookStatus bookStatus) {
-        return bookRepository.findByStatus(bookStatus)
+        return bookRepository.findByBookStatus(bookStatus)
                 .stream()
                 .map(each ->
                         BookResponse.builder()

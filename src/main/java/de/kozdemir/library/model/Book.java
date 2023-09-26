@@ -1,10 +1,13 @@
 package de.kozdemir.library.model;
 
 
-import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
+
+import javax.persistence.*;
 
 /**
  * Created By Hasan-Murat Kücüközdemir
@@ -14,14 +17,15 @@ import lombok.experimental.SuperBuilder;
 @Table(name="book")
 @Data
 @NoArgsConstructor
-@SuperBuilder
+@AllArgsConstructor
+@Builder
 public class Book extends BaseEntity {
 
     private String title;
 
     private String authorName;
 
-    @Enumerated(value = EnumType.STRING)
+    @Enumerated(EnumType.STRING)
     private BookStatus bookStatus;
 
     private String publisher;

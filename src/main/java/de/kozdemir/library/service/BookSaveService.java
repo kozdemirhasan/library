@@ -6,9 +6,10 @@ import de.kozdemir.library.model.Book;
 import de.kozdemir.library.model.Category;
 import de.kozdemir.library.repository.BookRepository;
 import de.kozdemir.library.repository.CategoryRepository;
-import jakarta.transaction.Transactional;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Created By Hasan-Murat Kücüközdemir
@@ -27,20 +28,25 @@ public class BookSaveService {
 
     @Transactional
     public BookListItemResponse saveBook(SaveBookRequest saveBookRequest) {
+
+        System.out.println(("YYYY: " + saveBookRequest.getCategoryId()));
         Category category = categoryService.loadCategory(saveBookRequest.getCategoryId());
+        System.out.println("TTTTT: " + category.getName());
 
         final Book book = Book.builder()
                 .category(category)
                 .bookStatus(saveBookRequest.getBookStatus())
                 .title(saveBookRequest.getTitle())
+                .publisher(saveBookRequest.getPublisher())
                 .lastPageNumber(saveBookRequest.getLastPageNumber())
-                .totalPage(saveBookRequest.getTotalPage())
                 .authorName(saveBookRequest.getAuthorName())
+                .totalPage(saveBookRequest.getTotalPage())
                 .build();
+
 
         final Book fromDb = bookRepository.save(book);
 
-        return   BookListItemResponse.builder()
+        return BookListItemResponse.builder()
                 .categoryName(book.getCategory().getName())
                 .id(fromDb.getId())
                 .bookStatus(fromDb.getBookStatus())
@@ -48,6 +54,7 @@ public class BookSaveService {
                 .authorName(fromDb.getAuthorName())
                 .totalPage(fromDb.getTotalPage())
                 .lastPageNumber(fromDb.getLastPageNumber())
+                .title(fromDb.getTitle())
                 .build();
 
     }
